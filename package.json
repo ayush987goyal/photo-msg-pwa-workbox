@@ -6,13 +6,15 @@
   "author": "Ayush Goyal <ayush987goyal@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node server/"
+    "start": "node server/",
+    "build": "node sw_build.js"
   },
   "dependencies": {
     "bootstrap": "^4.1.3",
     "express": "^4.16.3",
     "jquery": "^3.3.1",
     "socket.io": "^2.1.1",
-    "toastr": "^2.1.4"
+    "toastr": "^2.1.4",
+    "workbox-build": "^3.4.1"
   }
 }
