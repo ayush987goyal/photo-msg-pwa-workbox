@@ -23,6 +23,11 @@
           crossorigin="anonymous">
 
     <style media="screen">
+        #camera.withphoto {
+            color: transparent !important;
+            background-size: cover;
+        }
+
         #toast-container {
             top: 0;
             left: 0;
@@ -88,8 +93,7 @@
 
                     <video id="player"
                            autoplay
-                           class="w-100 rounded bg-white"
-                           style="height: 300px;"></video>
+                           class="w-100 rounded"></video>
                     <button data-dismiss="modal"
                             id="shutter"
                             type="button"
@@ -104,6 +108,7 @@
     <script src="/modules/jquery/dist/jquery.min.js"></script>
     <script src="/modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/modules/toastr/build/toastr.min.js"></script>
+    <script src="/Classes/Camera.js"></script>
     <script src="/main.js"></script>
 
     <!-- Init App is supported -->

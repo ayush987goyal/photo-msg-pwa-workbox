@@ -1,17 +1,25 @@
+// Init new camera instance on the player node
+const camera = new Camera($('#player')[0]);
+
 const _init = () => {
   // Switch on camera in viewfinder
   $('#viewfinder').on('show.bs.modal', () => {
-    console.log('camera on');
+    camera.switch_on();
   });
 
   // Switch off camera in viewfinder
   $('#viewfinder').on('hidden.bs.modal', () => {
-    console.log('camera off');
+    camera.switch_off();
   });
 
   // Take photo
   $('#shutter').on('click', () => {
-    console.log('Take photo');
+    let photo = camera.take_photo();
+
+    // Show photo preview in camera button
+    $('#camera')
+      .css('background-image', `url(${photo})`)
+      .addClass('withphoto');
   });
 
   // Submit message
@@ -20,7 +28,7 @@ const _init = () => {
     const caption = $('#caption').val();
 
     // Check message is ok
-    if (!caption) {
+    if (!camera.photo || !caption) {
       toastr.warning('Photo & Caption Required', 'Incomplete Message');
       return;
     }
@@ -30,5 +38,9 @@ const _init = () => {
 
     // Reset caption field on success
     $('#caption').val('');
+    $('#camera')
+      .css('background-image', '')
+      .removeClass('withphoto');
+    camera.photo = null;
   });
 };
