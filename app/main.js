@@ -2,17 +2,24 @@
 const camera = new Camera($('#player')[0]);
 
 const _init = () => {
-  // Switch on camera in viewfinder
+  // Init new message instance
+  const messages = new Message();
+
+  window.addEventListener('messages_error', () => {
+    toastr.error(
+      'Messages could not be retrieved.<br>Will keep trying.',
+      'Network Connection Error'
+    );
+  });
+
   $('#viewfinder').on('show.bs.modal', () => {
     camera.switch_on();
   });
 
-  // Switch off camera in viewfinder
   $('#viewfinder').on('hidden.bs.modal', () => {
     camera.switch_off();
   });
 
-  // Take photo
   $('#shutter').on('click', () => {
     let photo = camera.take_photo();
 
@@ -22,9 +29,7 @@ const _init = () => {
       .addClass('withphoto');
   });
 
-  // Submit message
   $('#send').on('click', () => {
-    // Get caption text
     const caption = $('#caption').val();
 
     // Check message is ok
@@ -33,8 +38,9 @@ const _init = () => {
       return;
     }
 
-    // Render new message in feed
-    renderMessage({ photo: camera.photo, caption });
+    let message = messages.add(camera.photo, caption);
+
+    renderMessage(message);
 
     // Reset caption field on success
     $('#caption').val('');
