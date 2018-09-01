@@ -12,6 +12,10 @@ const _init = () => {
     );
   });
 
+  window.addEventListener('new_message', e => {
+    renderMessage(e.detail);
+  });
+
   $('#viewfinder').on('show.bs.modal', () => {
     camera.switch_on();
   });

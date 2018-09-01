@@ -7,8 +7,14 @@ const server = http.Server(app);
 
 const io = socketio(server);
 
+const messages = [];
+
 io.on('connection', socket => {
-  console.log('New client connected');
+  socket.on('new_message', message => {
+    messages.unshift(message);
+
+    socket.broadcast.emit('new_message', message);
+  });
 });
 
 app.use(express.static(`${__dirname}/../app`));

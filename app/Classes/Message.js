@@ -7,6 +7,12 @@ class Message {
     this.socket.once('connect_error', () => {
       window.dispatchEvent(new Event('messages_error'));
     });
+
+    this.socket.on('new_message', message => {
+      this.messages.unshift(message);
+
+      window.dispatchEvent(new CustomEvent('new_message', { detail: message }));
+    });
   }
 
   get all() {
@@ -21,7 +27,7 @@ class Message {
 
     this.messages.unshift(message);
 
-    console.log('sending to server');
+    this.socket.emit('new_message', message);
 
     return message;
   }
