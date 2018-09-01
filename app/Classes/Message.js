@@ -8,6 +8,12 @@ class Message {
       window.dispatchEvent(new Event('messages_error'));
     });
 
+    this.socket.on('all_messages', messages => {
+      this.messages = messages;
+
+      window.dispatchEvent(new Event('messages_ready'));
+    });
+
     this.socket.on('new_message', message => {
       this.messages.unshift(message);
 

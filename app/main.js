@@ -12,6 +12,18 @@ const _init = () => {
     );
   });
 
+  window.addEventListener('messages_ready', () => {
+    $('#loader').remove();
+
+    if (messages.all.length == 0) {
+      toastr.info('Add the first message.', 'No Messages');
+    }
+
+    $('#messages').empty();
+
+    messages.all.reverse().forEach(renderMessage);
+  });
+
   window.addEventListener('new_message', e => {
     renderMessage(e.detail);
   });
