@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Photo Message</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <meta name="mobile-web-app-capable"
+          content="yes">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="/modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+          crossorigin="anonymous">
 
 </head>
-<body>
-    
-    <h1>Photo Message</h1>
+
+<body class="bg-info">
+
+    <main class="p-2">
+        <div id="messages"
+             class="container-fluid">
+            <div id="loader"
+                 class="text-center text-light"
+                 style="margin-top: 10rem;">
+                <i class="fas fa-spinner fa-2x fa-pulse"></i>
+                <p>Loading messages</p>
+            </div>
+        </div>
+    </main>
 
     <!-- Scripts -->
     <script src="/modules/jquery/dist/jquery.min.js"></script>
     <script src="/modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
