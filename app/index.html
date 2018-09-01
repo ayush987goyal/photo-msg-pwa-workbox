@@ -136,6 +136,13 @@
         // Check compatibility
         if ('mediaDevices' in navigator) {
             _init();
+
+            // Register SW if supported
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js');
+                });
+            }
         } else {
             // Show notification
             toastr.error(null, 'This app is not supported by your browser.', { timeout: 30000 });
